@@ -18,11 +18,11 @@ for kk=1:length(r)                     % we repeat this process for the two valu
     q(1,in_ma)=win(kk,1);               % the action value function is equal to the generated winnings
     for k=2:N_steps                     % we loop through the N_steps
         q(k,:)=q(k-1,:);                %
-        if  u(k)<r(kk),
-            in_ma=2;                    % as explained we switch to machine 2 every time u is 
-                                        % below threshold
+        if  u(k)<r(kk)
+            in_ma= 1*(in_ma==2)+...     % as explained we switch to the other machine every time u is
+                2*(in_ma==1);           % below threshold                                     
         else
-            [ma in_ma]=max(q(k,:));          % greedy action choosing the machine that maximizes q
+            [ma, in_ma]=max(q(k,:));    % greedy action choosing the machine that maximizes q
         end
         N(1,in_ma)=N(1,in_ma)+1;        % we increment the count of the machine chosen in_ma
         ind=N(1,in_ma);                 % we retrieve the value of this count
