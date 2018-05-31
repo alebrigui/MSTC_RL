@@ -23,7 +23,6 @@ pi_m=[.5 .5 0 0 0 0 0 0 0 0 0 0 0 0;
 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.5]; 
 P_pi=pi_m*P;
 R_pi=pi_m*R;
-% Bellman fixed point equation
-v =(eye(7)-gamma*(P_pi))\R_pi
+v=(eye(2)-gamma*(P_pi))R_pi;
  
  
