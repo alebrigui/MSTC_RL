@@ -1,4 +1,5 @@
-function [v q]=policy_evaluation(gamma,N_states,N_actions,N_steps,P,R,pi_m,v_ini,q_ini)
+function [v, q]=policy_evaluation(gamma,N_states,N_actions,N_steps,...
+    P,R,pi_m,v_ini,q_ini)
 % Policy evaluation. V / Q functions
 v=zeros(N_states,N_steps);
 v(:,1)=v_ini;

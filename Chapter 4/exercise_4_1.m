@@ -18,9 +18,9 @@ q_opt=inv(eye(4)-gamma*P*pi2)*R;
 % Policy evaluation. V / Q functions.Second policy (optimal)
 v_ini=zeros(N_states,1);
 q_ini=zeros(N_states*N_actions,1);
-[v_pe q_pe]=policy_evaluation(gamma,N_states,N_actions,N_steps,P,R,pi2,v_ini,q_ini);
+[v_pe, q_pe]=policy_evaluation(gamma,N_states,N_actions,N_steps,P,R,pi2,v_ini,q_ini);
 % Results comparison
-[v_opt v_pe(:,N_steps)]
+[v_opt v_pe(:,N_steps)] 
 [q_opt q_pe(:,N_steps)]
 % Graphical representation
 figure(1),aux=repmat(v_opt,[1 N_steps])-v_pe;

@@ -15,7 +15,7 @@ N_steps=400;
 v_opt=inv(eye(2)-gamma*pi2*P)*pi2*R;
 q_opt=inv(eye(4)-gamma*P*pi2)*R;
  % Value iteration. Check with exercise 3.3. Just for the second policy
-[v_vi q_vi]=value_iteration(gamma,N_states,N_actions,N_steps,P,R,pi2);
+[v_vi, q_vi]=value_iteration(gamma,N_states,N_actions,N_steps,P,R,pi2);
 % Results comparison
 [v_opt v_vi(:,N_steps)]
 [q_opt q_vi(:,N_steps)]
