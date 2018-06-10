@@ -27,7 +27,10 @@ path(k)=1;
 while s~=final_state
     %greedy action selection
     k = k+1;
+    % obtain the next state 
     S(:,k)= (S(:,k-1)'*(pi_greedy*P))';
+    
+    % we add the state to the result
     s = find(S(:,k)==1);
     path(k)=s;
 end 

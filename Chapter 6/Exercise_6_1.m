@@ -29,6 +29,7 @@ sta_pd1= pdf(pd1,sta);
 sta_pd2= pdf(pd2,sta);
 
 sta_phi = kron(sta_pd1,[1;0])+kron(sta_pd2,[0;1]);
+% convoluted use of kronecker product is not the most readable..
 
 phi_v = kron(sta_pd1,[1 0])+kron(sta_pd2,[0 1]);
 phi_q = kron(sta_pd1,kron(eye(2),[1 0]))+kron(sta_pd2,kron(eye(2),[0 1]));

@@ -26,14 +26,12 @@ sta_pd1= pdf(pd1,sta);
 sta_pd2= pdf(pd2,sta);
 
 sta_phi = kron(sta_pd1,[1;0])+kron(sta_pd2,[0;1]);
-% this part was quite difficult and convoluted, maybe a for loop is more
-% readable
+% convoluted use of kronecker product is not the most readable..
 phi_v = kron(sta_pd1,[1 0])+kron(sta_pd2,[0 1]);
 phi_q = kron(sta_pd1,kron(eye(2),[1 0]))+kron(sta_pd2,kron(eye(2),[0 1]));
 
 phi_v
 phi_q
-
 
 % Exercise 6.2
 % We calculate the solutions by BPE
@@ -68,7 +66,7 @@ title('Comparative: Block solution')
 
 
 % Exercise 6.3
-Niter=500000;
+Niter=1000000;
 pol='op';
 [theta_est_opt,q_est_opt_approx]=LSTD(Niter,R_W_approx,N_features,phi_q,pol)
 pol='rp';

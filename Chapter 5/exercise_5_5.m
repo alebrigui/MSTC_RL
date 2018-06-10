@@ -9,15 +9,15 @@ q_opt=inv(eye(cliff.N_states*cliff.N_actions)-cliff.gamma*cliff.P*cliff.pi_opt)*
 
 % Value iteration
 [v_vi q_vi] = value_iteration(cliff,N_steps_value_ite);
-[v_opt(37:48)';v_opt(25:36)';v_opt(13:24)';v_opt(1:12)']
-[v_vi(37:48)';v_vi(25:36)';v_vi(13:24)';v_vi(1:12)']
-[path_vi] = optimum_path(cliff,q_vi)
+[v_opt(37:48)';v_opt(25:36)';v_opt(13:24)';v_opt(1:12)'];
+[v_vi(37:48)';v_vi(25:36)';v_vi(13:24)';v_vi(1:12)'];
+[path_vi] = optimum_path(cliff,q_vi(:,N_steps_value_ite))
 
 % Policy iteration
-[v_pi q_pi] = policy_improvement(cliff,N_steps_value_ite);
-[v_opt(37:48)';v_opt(25:36)';v_opt(13:24)';v_opt(1:12)']
-[v_pi(37:48,500)';v_pi(25:36,500)';v_pi(13:24,500)';v_pi(1:12,500)']
-[path_pi] = optimum_path(cliff,q_pi)
+[v_pi q_pi] = policy_iteration(cliff,N_steps_value_ite);
+[v_opt(37:48)';v_opt(25:36)';v_opt(13:24)';v_opt(1:12)'];
+[v_pi(37:48,500)';v_pi(25:36,500)';v_pi(13:24,500)';v_pi(1:12,500)'];
+[path_pi] = optimum_path(cliff,q_pi(:,N_steps_value_ite))
 
 % QL algorithm
 cliff.alpha=.1;

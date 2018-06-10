@@ -1,7 +1,7 @@
 function [q_ql] = QL_R_W(R_W,N_epi)
 
 q_ql=zeros(R_W.N_states*R_W.N_actions,N_epi);
-epsilon=0.1;
+epsilon=0.2;
 
 for k=1:N_epi
 	if k>1, q_ql(:,k)=q_ql(:,k-1); end % Start from the previous episodes value function

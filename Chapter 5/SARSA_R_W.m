@@ -1,7 +1,7 @@
 function [q_sarsa] = SARSA_R_W(R_W,N_epi)
 
 q_sarsa=zeros(R_W.N_states*R_W.N_actions,N_epi);
-epsilon=-2.9;
+epsilon=0.2;
 
 for k=1:N_epi
 	if k>1, q_sarsa(:,k)=q_sarsa(:,k-1); end % Start from the previous episode value function

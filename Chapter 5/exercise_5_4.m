@@ -21,8 +21,8 @@ aux=repmat(q_rp,[1 N_steps_value_ite])-q_pe_bell;
 plot(1:N_steps_value_ite,10*log10(diag(aux'*aux)),'r','LIneWidth',5)
 xlabel('Steps')
 ylabel('Error')
-title('Value / Q iteration performance'),hold off
-%%
+title('Value / Q iteration performance')
+
 % Value iteration
 [v_vi q_vi] = value_iteration(R_W.gamma,R_W.N_states,R_W.N_actions,...
     N_steps_value_ite,R_W.P,R_W.R);
@@ -35,12 +35,12 @@ aux = v_vi - v_pi;
 plot(1:N_steps_value_ite,10*log10(diag(aux'*aux)))
 xlabel('Steps')
 ylabel('Policy improvement')
-
+%%
 % TD V function. Random policy
 [v_td] = TD_R_W(R_W,N_steps_value_ite);
 [v_rp v_td(:,N_steps_value_ite)]
 
-%%
+
 % QL algorithm
 R_W.alpha=.1;
 [q_ql] = QL_R_W(R_W,N_steps_value_ite);

@@ -1,5 +1,5 @@
-function [theta_est,q_est_approx]=LSTD(Niter,problem,...
-    N_features,phi_q,pol)
+function [theta_est,q_est_approx]=LSTD_2(Niter,problem,...
+    N_features,phi_q,pol,epsilon)
 
 M = N_features*problem.N_actions;
 
@@ -15,7 +15,12 @@ L = zeros(M,M);
 z = zeros(M,1);
 
 s = 1;
-a = randsample(1:problem.N_actions,1); % we initialize s and a
+aux = pol(s,(s-1)*problem.N_actions+1:...
+    s*problem.N_actions);
+
+% Get the action following the policy
+a= find(aux==1);
+
 
 for k=1:Niter
         % we get the index of the line corresponding to our s,a
@@ -28,26 +33,25 @@ for k=1:Niter
         % the transition matrix that corresponds to our s,a combination
         % because the transitions are stochastic        
         s_prev = s;
+        a_prev = a;
         s = randsample(rng,1:problem.N_states,1,true,...
             problem.P(sa_index,:));
-        
-        
+               
         % aux is the line of the policy matrix that corresponds to 
         % our state
         aux = problem.pi_opt(s,(s-1)*problem.N_actions+1:...
             s*problem.N_actions);
         
-        % Get the action following the optimal policy
+        % Get the action following the actual policy
         a_pol = find(aux==1);
-        % we store the value of the previous action
-        a_prev = a;
-        % If we choose random policy we sample randomly else we take
-        % the optimal action 
-        if pol=='rp'
-            a=randsample(1:problem.N_actions,1);
-        elseif pol=='op'
-            a=a_pol;
-        end    
+        
+        u = rand(1,1);
+        
+        if u<epsilon
+            a = randsample(1:problem.N_actions,1);
+        else
+            a = a_pol;
+        end
         
         index_prev = (s_prev-1)*problem.N_actions+a_prev;
         index_act = (s-1)*problem.N_actions+a;
