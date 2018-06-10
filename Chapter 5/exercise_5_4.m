@@ -22,7 +22,7 @@ plot(1:N_steps_value_ite,10*log10(diag(aux'*aux)),'r','LIneWidth',5)
 xlabel('Steps')
 ylabel('Error')
 title('Value / Q iteration performance'),hold off
-
+%%
 % Value iteration
 [v_vi q_vi] = value_iteration(R_W.gamma,R_W.N_states,R_W.N_actions,...
     N_steps_value_ite,R_W.P,R_W.R);
@@ -31,7 +31,7 @@ title('Value / Q iteration performance'),hold off
 [v_pi q_pi] = policy_iteration(R_W.gamma,R_W.N_states,R_W.N_actions,...
     N_steps_value_ite,1000,R_W.P,R_W.R,R_W.pi_rp);
 [v_vi v_pi(:,N_steps_value_ite)]
-aux=v_vi-v_pi;
+aux = v_vi - v_pi;
 plot(1:N_steps_value_ite,10*log10(diag(aux'*aux)))
 xlabel('Steps')
 ylabel('Policy improvement')

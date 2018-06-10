@@ -21,14 +21,18 @@ for k=1:N_epi
         if S(cont)==1,in=0;end
         if S(cont)==7,R=1;in=0;end
     end
+    
     g=R; 
+    
     for kk=cont-1:-1:1     
         N(S(kk)) = N(S(kk))+1;
         v_mc(S(kk),k) = v_mc(S(kk),k)+1/N(S(kk))*(g-v_mc(S(kk),k));
         g = gamma*g;
     end
     v_mc(:,k+1)=v_mc(:,k);
+    
 end
+
 [v_rp v_mc(:,N_epi)]
 
 
