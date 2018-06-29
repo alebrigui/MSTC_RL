@@ -26,6 +26,7 @@ sta_pd1= pdf(pd1,sta);
 sta_pd2= pdf(pd2,sta);
 
 sta_phi = kron(sta_pd1,[1;0])+kron(sta_pd2,[0;1]);
+
 % convoluted use of kronecker product is not the most readable..
 phi_v = kron(sta_pd1,[1 0])+kron(sta_pd2,[0 1]);
 phi_q = kron(sta_pd1,kron(eye(2),[1 0]))+kron(sta_pd2,kron(eye(2),[0 1]));
@@ -87,11 +88,11 @@ xlabel('State-Actions space')
 ylabel('Q-function')
 title('Comparative: Block / LSTD solution')
 
-
+%%
 % Exercise 6.4
 % We implement the LSPI on-line
-e_s=30000;         % Size of an episode
-Niter=600000;
+e_s=3000;         % Size of an episode
+Niter=60000;
 [theta_est,q_opt_ite]=LSPI(R_W_approx,Niter,e_s,N_features,phi_q);
 aux=repmat(q_opt,[1 Niter/e_s])-q_opt_ite;
 plot(1:Niter/e_s,10*log10(sum(aux.^2,1)),'r','LIneWidth',5)

@@ -1,10 +1,7 @@
 function [theta_est,q_est_approx]=LSTD_2(Niter,problem,...
     N_features,phi_q,pol,epsilon)
 
-M = N_features*problem.N_actions;
-
-% rng
-rng = RandStream('mlfg6331_64');            
+M = N_features*problem.N_actions;       
 
 % for debugging purpose we see the number of visitations
 N = zeros(problem.N_states*problem.N_actions,1);
@@ -34,7 +31,7 @@ for k=1:Niter
         % because the transitions are stochastic        
         s_prev = s;
         a_prev = a;
-        s = randsample(rng,1:problem.N_states,1,true,...
+        s = randsample(1:problem.N_states,1,true,...
             problem.P(sa_index,:));
                
         % aux is the line of the policy matrix that corresponds to 

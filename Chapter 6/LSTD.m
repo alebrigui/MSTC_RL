@@ -3,9 +3,6 @@ function [theta_est,q_est_approx]=LSTD(Niter,problem,...
 
 M = N_features*problem.N_actions;
 
-% rng
-rng = RandStream('mlfg6331_64');            
-
 % for debugging purpose we see the number of visitations
 N = zeros(problem.N_states*problem.N_actions,1);
 
@@ -28,7 +25,7 @@ for k=1:Niter
         % the transition matrix that corresponds to our s,a combination
         % because the transitions are stochastic        
         s_prev = s;
-        s = randsample(rng,1:problem.N_states,1,true,...
+        s = randsample(1:problem.N_states,1,true,...
             problem.P(sa_index,:));
         
         

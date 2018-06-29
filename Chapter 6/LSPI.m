@@ -2,8 +2,9 @@ function [theta_est,q_ite]=LSPI(R_W_approx,Niter,e_s,N_features,phi_q)
 
 pi = zeros(R_W_approx.N_states,R_W_approx.N_states*R_W_approx.N_actions);
 q_ite = zeros(R_W_approx.N_states*R_W_approx.N_actions);
-epsilon = 0.2;
-% we start with a randomly initialized policy
+epsilon = 0.1;
+
+% we start with a randomly initialized determinstic policy
 for kk=1:R_W_approx.N_states
     opt_a = randsample(1:R_W_approx.N_actions,1);
     pi(kk,((kk-1)*R_W_approx.N_actions+opt_a)) = 1;

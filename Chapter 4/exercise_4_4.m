@@ -9,7 +9,7 @@ v_rp=(eye(N_states)-gamma*pi_m*P)\pi_m*R;
 q_rp=(eye(N_states*N_actions)-gamma*P*pi_m)\R;
 [v_rp(1:5) v_rp(6:10) v_rp(11:15) v_rp(16:20) v_rp(21:25)]
 
-%% Policy evaluation. V / Q functions
+% Policy evaluation. V / Q functions
 v_ini=zeros(N_states,1);
 q_ini=zeros(N_states*N_actions,1);
 [v_pe, q_pe]=policy_evaluation(gamma,N_states,N_actions,N_steps,P,R,pi_m,v_ini,q_ini);
@@ -40,6 +40,8 @@ aux=repmat(v_vi(:,N_steps),[1 N_steps_pi])-v_pi;
 plot(1:N_steps_pi,10*log10(diag(aux'*aux)))
 xlabel('Steps')
 ylabel('Policy iteration / Value Iteration')
+
+
 
       
         
